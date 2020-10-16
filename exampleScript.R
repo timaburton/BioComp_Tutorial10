@@ -59,4 +59,49 @@ if (x > 0){
   print("x is equal to zero, be less boring")
 }
 
+
+#iris sepal length example
+
+#read data frame into R
+dt = read.csv("iris.csv", header = T, stringsAsFactors = F)
+
+#initiate variables to count total sepal length (*.total)
+#and total number of each observation (*.count)
+setosa.total = 0
+versicolor.total = 0
+verginica.total = 0
+setosa.count = 0
+versicolor.count = 0
+verginica.count = 0
+
+#loop to run through each row of dt
+for (file in length(dt$Species)){
+  #if statement tests if the species for this row is "setosa"
+  if (dt$Species[file] == "setosa"){
+    #if true, add sepal length to existing .total variable
+    #also add count variable (existing value +1)
+    setosa.total = setosa.total + dt$Sepal.Length[file]
+    setosa.count = setosa.count + 1
+    #else if to then ask if the row is "versicolor" species
+  } else if (dt$Species[file] == "versicolor"){
+    #same thing as above for setosa species
+    versicolor.total = versicolor.total + dt$Sepal.Length[file]
+    versicolor.count = versicolor.count + 1
+    #all other species will be captured by simply calling "else"
+  } else{
+    #same thing as above for other species
+    verginica.total = verginica.total + dt$Sepal.Length[file]
+    verginica.count = verginica.count + 1
+  }
+  #if statement to check if the loop is on the last row
+  #this works since we use the length(dt$Species) argument
+  #that ended the set our for loop goes through
+  #i.e. when we called for (file in 1:length(dt$species))
+  if (file == length(dt$Species)){
+    setosa.avg = setosa.total / setosa.count
+    vers.avg = versicolor.total / versicolor.count
+    verg.avg = verginica.total / verginica.count
+  }
 }
+
+
