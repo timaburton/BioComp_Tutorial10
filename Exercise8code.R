@@ -52,13 +52,14 @@ x = "not correct"
 print("I'm thinking of a number 1-100...")
 while (x != "correct") {
 Guess <- readline(prompt = "Guess: ")
-if (substr(Guess, 1, 3) > number){
+if (as.numeric(Guess) > number){
   print("Lower")
-}else if (substr(Guess, 1, 3) < number){
+}else if (as.numeric(Guess) < number){
   print("Higher")
 }else{
   print("You got it!")
   x = "correct"
 }
 }
+
 
