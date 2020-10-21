@@ -45,13 +45,26 @@ lines(dfMSU)
 # code for a game called guess my number
 # the computer will pick a number 1 through 100 and the suer will try to guess it
 
+# make the game a function so that it can be called easily
+GuessGame <- function(number){
+  
 # create a vector of numbers 1 through 100 for the computer to chose from 
 options <- c(1:100)
+
+# use the vector inside the sample function to tell the computer to randomly pick one number
 number <- sample(options, 1)
+
+# a variable as not correct so that the while statement will stop when the guess is correct
 x = "not correct"
+
+# the prompt of the game
 print("I'm thinking of a number 1-100...")
+
+# the while statement keeps the game going until the guesser guesses right
 while (x != "correct") {
-Guess <- readline(prompt = "Guess: ")
+# promts the user to insert a guess
+  Guess <- readline(prompt = "Guess: ")
+# tells the user if they need to guess lower or higher or they got it right
 if (as.numeric(Guess) > number){
   print("Lower")
 }else if (as.numeric(Guess) < number){
@@ -61,5 +74,6 @@ if (as.numeric(Guess) > number){
   x = "correct"
 }
 }
-
-
+}
+# call the function to play the game
+GuessGame()
