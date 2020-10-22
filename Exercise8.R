@@ -1,3 +1,4 @@
+#1
 #####plot data on a graph for both teams
 
 ##load data
@@ -31,6 +32,28 @@ for(line in 1:nrow(basketball)){
 ##plot lines
 plot(MSUtime,MSUscore,type="l", main="UW vs. MSU Score throughout Game", xlab="Time(minutes)", ylab="Score", col="green")
 lines(UWtime,UWscore, col="red")
+##MSU is in green, UW is in red
 ##check scores
 sum(basketball[basketball$team=="UW",]$score)
 sum(basketball[basketball$team=="MSU",]$score)
+###############################################
+#2
+##create a random number
+random=floor(runif(1,min=0, max=101))
+n=0
+while(n<10){
+  guess <- readline(prompt="Enter your guess: ")
+  if(guess==random){
+    print("You got it!")
+    break
+  }else if(guess>random){
+    print("Too high, guess again")
+    n=n+1
+  }else if(guess<random){
+    print("Too low, guess again")
+    n=n+1
+  }
+  if(n==10){
+    cat("You've used all your attempts- you lose! The number was:", random)
+  }
+}
