@@ -37,14 +37,13 @@ legend("topleft",
 
 ###### Question 2
 #To begin, enter guessnumber() and place your first guess within parentheses. 
-#Deafault guess is 1 if no number is specified.This will be your first guess. 
+#Default guess is 1 if no number is specified.This will be your first guess. 
 #Afterwards, guessing can proceed in the console. You will be allowed to 
 #guess with feedback 10 total times. 
 
 guessnumber<-function(guess=1){
 counter <- 1
 number <- sample(1:100, 1)
-print(paste0("I am thinking of a number 1-100"))
 while(counter < 11) {
   if (guess < number) {
     print(paste0("Higher"))
@@ -65,4 +64,5 @@ while(counter < 11) {
 }
 }
 
+print(paste0("I am thinking of a number 1-100"))
 guessnumber()
