@@ -22,14 +22,14 @@ for (i in 2:nrow(UWMSU)) {
 }
 
 #Create a new table so that cumulative scores are linked with game time 
-cum<-cbind(UWMSU,cumsum_UW)
-cum<-cbind(cum,cumsum_MSU)
-cum<-rbind(c(0,"UW",0,0,0), cum)
-cum<-rbind(c(0,"MSU",0,0,0), cum)
+cumul<-cbind(UWMSU,cumsum_UW)
+cumul<-cbind(cumul,cumsum_MSU)
+cumul<-rbind(c(0,"UW",0,0,0), cumul)
+cumul<-rbind(c(0,"MSU",0,0,0), cumul)
 
 #Plot both cumulative scores against time on 1 plot 
-plot(cum$time, cum$cumsum_UW, type="l", col="blue", xlab="Time", ylab="Score")
-lines(cum$time, cum$cumsum_MSU, col="red")
+plot(cumul$time, cumul$cumsum_UW, type="l", col="blue", xlab="Time", ylab="Score")
+lines(cumul$time, cumul$cumsum_MSU, col="red")
 legend("topleft",
        c("UW","MSU"),
        fill=c("blue","red")
