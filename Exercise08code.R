@@ -24,6 +24,8 @@ for (i in 2:nrow(UWMSU)) {
 #Create a new table so that cumulative scores are linked with game time 
 cum<-cbind(UWMSU,cumsum_UW)
 cum<-cbind(cum,cumsum_MSU)
+cum<-rbind(c(0,"UW",0,0,0), cum)
+cum<-rbind(c(0,"MSU",0,0,0), cum)
 
 #Plot both cumulative scores against time on 1 plot 
 plot(cum$time, cum$cumsum_UW, type="l", col="blue", xlab="Time", ylab="Score")
@@ -34,40 +36,33 @@ legend("topleft",
 )
 
 ###### Question 2
+#To begin, enter guessnumber() and place your first guess within parentheses. 
+#Deafault guess is 1 if no number is specified.This will be your first guess. 
+#Afterwards, guessing can proceed in the console. You will be allowed to 
+#guess with feedback 10 total times. 
+
+guessnumber<-function(guess=1){
+counter <- 1
 number <- sample(1:100, 1)
-Feedback <- character(length = length(number))
-guess <- 50
-for(i in 1:length(guess)){
-  if(guess[i] > number){ 
-    Feedback[i] = "Lower" 
-  } else if(guess[i] < number){
-    Feedback[i] = "Higher" 
-  } else{Feedback[i] = "Correct!"} 
+print(paste0("I am thinking of a number 1-100"))
+while(counter < 11) {
+  if (guess < number) {
+    print(paste0("Higher"))
+    counter <- counter + 1
+    nextguess <- readline("Guess:")
+    guess <- as.numeric(nextguess)
+  } else if (guess > number) {
+    print(paste0("Lower"))
+    counter <- counter + 1
+    nextguess <- readline("Guess:")
+    guess <- as.numeric(nextguess)
+  } else if (guess == number) {
+    print("Correct!")
+    opt <- options(show.error.messages=FALSE)
+    on.exit(options(opt))
+    stop()
+  } 
 }
-Feedback
-
-
-guess <- 3
-guess <- function(g) {
-  counter <- 1
-  ran <- sample(1:100, 1)
-  while(counter < 8) {
-    if (g < ran) {
-      print(paste0("Too low (No. of attempts: ", counter, ")"))
-      m <- readline("Type number again:")
-      g <- as.numeric(m)
-      counter <- counter + 1
-    } else if (g > ran) {
-      print(paste0("Too high (No. of attempts: ", counter, ")"))
-      m <- readline("Type number again:")
-      g <- as.numeric(m)
-      counter <- counter + 1
-    } else if (g == ran) {
-      print("Correct")
-      opt <- options(show.error.messages=FALSE)
-      on.exit(options(opt))
-      stop()
-    }
-  }
-  print(paste0("You've run out of attempts! Correct answer was: ", ran))
 }
+
+guessnumber()
