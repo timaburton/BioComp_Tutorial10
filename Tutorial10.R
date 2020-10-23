@@ -30,7 +30,7 @@ for (i in 1:length(MSUunadded)){
 }
 
 #plot scores in line graph
-plot(UWx,UWy,type="l", main="UW vs MSU 1-22-13", xlab="Time", ylab="Score", col="red")
+plot(UWx,UWy,type="l", main="UW vs MSU 1-22-13", xlab="Minutes", ylab="Score", col="red")
 lines(MSUx,MSUy)
 
 
