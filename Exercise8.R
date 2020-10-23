@@ -1,5 +1,5 @@
 #create a cumulative score graph for UW and MSU from UWvMSU_1-22-13.txt
-#set working directory
+#set working directory with UWvMSU_1-22-13.txt file in directory
 #create rawscores matrix with data from UWvMSU_1-22-13.txt
 rawscores = read.table("UWvMSU_1-22-13.txt", header=TRUE)
 
@@ -17,14 +17,14 @@ MSUscores = matrix(nrow = dim(rawscores)[1], ncol = 2)
 #puts the time stamp and cumulative score into the UW or MSU score matrix 
 for(i in 1:dim(rawscores)[1]){
   if(rawscores[i,2] == "UW"){
-UWcumulative = UWcumulative + as.integer(rawscores[2,3])
+UWcumulative = UWcumulative + as.integer(rawscores[i,3])
 UWscores[i,1] = rawscores[i,1]
 UWscores[i,2] = UWcumulative
 MSUscores[i,1] = rawscores[i,1]
 MSUscores[i,2] = MSUcumulative
     
   }
-  else{
+  else if(rawscores[i,2] == "MSU"){
     MSUcumulative = MSUcumulative + as.integer(rawscores[i,3])
     MSUscores[i,1] = rawscores [i,1]
     MSUscores[i,2] = MSUcumulative
@@ -35,10 +35,10 @@ MSUscores[i,2] = MSUcumulative
   }
   
 }
-#plotting the cumulative UW scores graph over time
-plot(as.numeric(UWscores[,1]), as.integer(UWscores[,2]), type = "l")
-#plotting the cumulative MSU score graph over time
-lines(MSUscores[,1], MSUscores[,2])
+#plotting the cumulative MSU scores graph over time
+plot(as.numeric(MSUscores[,1]), as.integer(MSUscores[,2]), type = "l")
+#plotting the cumulative UW score graph over time
+lines(UWscores[,1], UWscores[,2])
 
 
 ##part2
